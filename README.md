@@ -79,7 +79,7 @@ container to avoid some performances issues on Windows for exemple. If you want 
 
 @TODO
 
-#Addons
+# Addons
 
 ## Capistrano
 
@@ -104,6 +104,6 @@ or run it
 docker-compose -f ./docker-compose.capistrano.yaml run capistrano cap deploy stagging
 ```
 
-## Node
+## NodeJS
 
 @TODO
