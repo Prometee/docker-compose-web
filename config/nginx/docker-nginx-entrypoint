@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+
+export NGINX_WEB_INDEX_FILE_DOT_ESCAPED=${NGINX_WEB_INDEX_FILE//./\\.}
+export DOLLAR="$"
+envsubst < /etc/nginx/conf.d/default.conf.tpl > /etc/nginx/conf.d/default.conf
+
+exec "$@"

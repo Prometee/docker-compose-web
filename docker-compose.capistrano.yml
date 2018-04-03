@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  capistrano:
+    build:
+      context: ${DOCKER_CAPISTRANO_CONFIG_DIR}
+      args:
+        CAPISTRANO_ROOT: ${APP_ROOT}
+    volumes:
+      - ${PROJECT_DIR}:${APP_ROOT}
+      - ${CAPISTRANO_SSH_USER_DIR}:/root/.ssh
