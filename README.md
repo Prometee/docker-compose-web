@@ -2,6 +2,9 @@ Docker Compose for WEB development
 ==================================
 
 # Quick start
+
+Put this repository files in a `.docker` folder in/outside your project or put it a the root of it (default behaviour)
+ 
 ```cmd
 cp .env.dist .env
 docker-compose up -d --build
@@ -19,6 +22,11 @@ docker-compose up -d --build
    * [mysql://localhost:3306](mysql://localhost:3306) or [mysql://127.0.0.1:3306](mysql://127.0.0.1:3306)
 
 # Detailed using
+
+## Initialisation
+
+Put this repository files in a `.docker` folder in/outside your project or put it a the root of it (default behaviour)
+
 ## Environment vars
 
 The first thing to do is to copy the `.env.dist` file to a `.env` file, then fill in the value you want to be changed.
