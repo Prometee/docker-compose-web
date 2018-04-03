@@ -7,19 +7,22 @@ services:
       args:
         PHP_VERSION: ${APP_PHP_VERSION}
         APP_ROOT: ${APP_ROOT}
+        APP_PROJECT_TYPE: ${PROJECT_TYPE}
     depends_on:
       - db
       - mailhog
     volumes:
-      #PHP config files
-      - ${DOCKER_APP_CONFIG_DIR}/php:/usr/local/etc/php/conf.custom.d/
+      # PHP config files
+      - ${DOCKER_APP_CONFIG_DIR}/php/conf.custom.d:/usr/local/etc/php/conf.custom.d/
       #SRC folder of your project
       - ${PROJECT_DIR}:${APP_ROOT}
       # If you develop on Linux, comment out the following volumes to just use bind-mounted project directory from host
+      # BEGIN symfony-flex
       - ${APP_ROOT}/var/
       - ${APP_ROOT}/var/cache/
       - ${APP_ROOT}/var/logs/
       - ${APP_ROOT}/var/sessions/
+      # END symfony-flex
     ports:
       - '${PHP_PORT}:9000'
 
@@ -28,6 +31,7 @@ services:
       context: ${DOCKER_NGINX_CONFIG_DIR}
       args:
         NGINX_ROOT: ${APP_ROOT}
+        NGINX_PROJECT_TYPE: ${PROJECT_TYPE}
     environment:
         NGINX_WEB_FOLDER: ${NGINX_WEB_FOLDER:-"public"}
         NGINX_WEB_INDEX_FILE: ${NGINX_WEB_INDEX_FILE:-"index.php"}
