@@ -42,7 +42,7 @@ docker-compose build
 All containers will be launch and ports will be available on loopback network
 
 ```cmd
-docker-compose build
+docker-compose up -d
 ```
 
 # Configuration by `${PROJECT_TYPE}`
