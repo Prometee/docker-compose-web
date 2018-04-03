@@ -46,6 +46,7 @@ docker-compose build
 ```
 
 # Configuration by `${PROJECT_TYPE}`
+
 ## `"symfony-flex"`
 
 This configuration has a specific php configuration and a vhost file. Plus, you can keep `/var/*` folders in the
@@ -63,12 +64,19 @@ container to avoid some performances issues on Windows for exemple. If you want 
 ```
 
 ## `"symfony-1"`
+
 @TODO
+
 ## `"symfony-2"`
+
 @TODO
+
 ## `"drupal"`
+
 @TODO
+
 ## `"wordpress"`
+
 @TODO
 
 #Addons
