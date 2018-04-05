@@ -2,16 +2,13 @@
 
 set -e
 
-if [ ! -d ${APP_ROOT}/var ]
-then
-    mkdir -p \
-            ${APP_ROOT}/app/cache/ \
-            ${APP_ROOT}/app/logs/ \
-            ${APP_ROOT}/app/sessions/ \
-        && chmod 777 \
-            ${APP_ROOT}/app/cache/ \
-            ${APP_ROOT}/app/logs/ \
-            ${APP_ROOT}/app/sessions/
-fi
+[ ! -d ${APP_CACHE_DIR} ] && mkdir -p ${APP_CACHE_DIR}
+[ ! -d ${APP_LOGS_DIR} ] && mkdir -p ${APP_LOGS_DIR}
+[ ! -d ${APP_SESSIONS_DIR} ] && mkdir -p ${APP_SESSIONS_DIR}
+
+chmod 777 \
+    ${APP_CACHE_DIR} \
+    ${APP_LOGS_DIR} \
+    ${APP_SESSIONS_DIR}
 
 exec "$@"
