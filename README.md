@@ -1,6 +1,8 @@
 Docker Compose for WEB development
 ==================================
 
+This docker-compose use php-fpm, nginx (HTTP+HTTPS/2), MySQL and Mailhog.
+
 # Quick start
 
 Put this repository files in a `.docker` folder in/outside your project or put it a the root of it (default behaviour)
@@ -105,11 +107,11 @@ of `${PROJECT_DIR}`
 
 ```cmd
 docker-compose -f ./docker-compose.capistrano.yaml up -d
-docker-compose -f ./docker-compose.capistrano.yaml exec capistrano cap deploy stagging
+docker-compose -f ./docker-compose.capistrano.yaml exec capistrano cap stagging deploy
 ```
 or run it
 ```cmd
-docker-compose -f ./docker-compose.capistrano.yaml run capistrano cap deploy stagging
+docker-compose -f ./docker-compose.capistrano.yaml run capistrano cap stagging deploy
 ```
 
 ## NodeJS
