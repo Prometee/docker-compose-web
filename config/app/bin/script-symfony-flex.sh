@@ -9,6 +9,6 @@ set -e
 chmod 777 \
     ${APP_ROOT}/${APP_CACHE_DIR} \
     ${APP_ROOT}/${APP_LOGS_DIR} \
-    ${APP_ROOT}/${APP_SESSIONS_DIR}/
+    ${APP_ROOT}/${APP_SESSIONS_DIR}
 
 exec "$@"
