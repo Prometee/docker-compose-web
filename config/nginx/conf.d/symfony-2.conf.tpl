@@ -17,7 +17,7 @@ server {
         try_files ${DOLLAR}uri /${NGINX_WEB_INDEX_FILE}${DOLLAR}is_args${DOLLAR}args;
     }
 
-    location ~ ^/(${NGINX_WEB_INDEX_FILE_DOT_ESCAPED}|config.php)(/|$) {
+    location ~ ^/(${NGINX_WEB_INDEX_FILE_DOT_ESCAPED}|config\.php)(/|$) {
         #resolver 127.0.0.11;
         #set ${DOLLAR}upstream_host app;
         #fastcgi_pass ${DOLLAR}upstream_host:9000;
