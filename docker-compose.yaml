@@ -2,6 +2,9 @@ version: '3'
 
 services:
   app:
+    extends:
+        file: ${PROJECT_TYPE}.yaml
+        service: app
     build:
       context: ${DOCKER_APP_CONFIG_DIR}
       args:
@@ -16,13 +19,11 @@ services:
       - ${DOCKER_APP_CONFIG_DIR}/php/conf.custom.d:/usr/local/etc/php/conf.custom.d/
       #SRC folder of your project
       - ${PROJECT_DIR}:${APP_ROOT}
-      # If you develop on Linux, comment out the following volumes to just use bind-mounted project directory from host
-      # BEGIN symfony-flex
-      - ${APP_ROOT}/var/
-      - ${APP_ROOT}/var/cache/
-      - ${APP_ROOT}/var/logs/
-      - ${APP_ROOT}/var/sessions/
-      # END symfony-flex
+    entrypoint:
+      - script-${PROJECT_TYPE}.sh
+      - docker-php-entrypoint
+    command:
+      - php-fpm
     ports:
       - '${PHP_PORT}:9000'
 

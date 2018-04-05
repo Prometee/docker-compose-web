@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  app:
+    build:
+    volumes:
+      # BEGIN symfony-flex
+      - ${APP_ROOT}/app/cache/
+      - ${APP_ROOT}/app/logs/
+      - ${APP_ROOT}/app/sessions/
+      # END symfony-flex

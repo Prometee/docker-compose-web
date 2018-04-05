@@ -36,22 +36,8 @@ RUN set -xe \
 ENV PHP_INI_SCAN_DIR "/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.custom.d"
 
 COPY php/conf.d/*.ini php/project_type/*${APP_PROJECT_TYPE}.ini /usr/local/etc/php/conf.d/
+COPY bin/script-*${APP_PROJECT_TYPE}.sh /usr/local/bin
 
 COPY --from=0 /usr/bin/composer /usr/bin/composer
-
-#Specific to symfony-flex
-RUN if [ "${APP_PROJECT_TYPE}" = "symfony-flex" ];\
-    then \
-        mkdir -p \
-            ${APP_ROOT}/var \
-            ${APP_ROOT}/var/cache/ \
-            ${APP_ROOT}/var/logs/ \
-            ${APP_ROOT}/var/sessions/ \
-        && chmod 777 \
-            ${APP_ROOT}/var \
-            ${APP_ROOT}/var/cache/ \
-            ${APP_ROOT}/var/logs/ \
-            ${APP_ROOT}/var/sessions/; \
-	fi
 
 WORKDIR ${APP_ROOT}
