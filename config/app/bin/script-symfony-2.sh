@@ -7,8 +7,8 @@ set -e
 [ ! -d ${APP_SESSIONS_DIR} ] && mkdir -p ${APP_SESSIONS_DIR}
 
 chmod 777 \
-    ${APP_CACHE_DIR} \
-    ${APP_LOGS_DIR} \
-    ${APP_SESSIONS_DIR}
+    ${APP_CACHE_DIR}/ \
+    ${APP_LOGS_DIR}/ \
+    ${APP_SESSIONS_DIR}/
 
 exec "$@"
