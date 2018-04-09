@@ -7,8 +7,8 @@ services:
       args:
         PHP_VERSION: ${APP_PHP_VERSION}
         APP_ROOT: ${APP_ROOT}
-        APP_PROJECT_TYPE: ${PROJECT_TYPE}
     environment:
+        APP_PROJECT_TYPE: ${PROJECT_TYPE}
         APP_CACHE_DIR: ${APP_CACHE_DIR}
         APP_LOGS_DIR: ${APP_LOGS_DIR}
         APP_SESSIONS_DIR: ${APP_SESSIONS_DIR}
@@ -35,8 +35,8 @@ services:
       context: ${DOCKER_NGINX_CONFIG_DIR}
       args:
         NGINX_ROOT: ${APP_ROOT}
-        NGINX_PROJECT_TYPE: ${PROJECT_TYPE}
     environment:
+        NGINX_PROJECT_TYPE: ${PROJECT_TYPE}
         NGINX_WEB_FOLDER: ${NGINX_WEB_FOLDER}
         NGINX_WEB_INDEX_FILE: ${NGINX_WEB_INDEX_FILE}
     depends_on:

@@ -5,8 +5,6 @@ FROM php:${PHP_VERSION}-fpm-alpine
 
 ARG APP_ROOT=/var/www/html
 ENV APP_ROOT ${APP_ROOT}
-ARG APP_PROJECT_TYPE=symfony-flex
-ENV APP_PROJECT_TYPE ${APP_PROJECT_TYPE}
 
 RUN apk add --no-cache --virtual .persistent-deps \
 		git \
@@ -35,8 +33,8 @@ RUN set -xe \
 #  - ${DOCKER_APP_CONFIG_DIR}/php:/usr/local/etc/php/conf.custom.d/
 ENV PHP_INI_SCAN_DIR "/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.custom.d"
 
-COPY php/conf.d/*.ini php/project_type/*${APP_PROJECT_TYPE}.ini /usr/local/etc/php/conf.d/
-COPY bin/script-*${APP_PROJECT_TYPE}.sh /usr/local/bin
+COPY php/conf.d/*.ini php/project_type/*.ini /usr/local/etc/php/conf.d/
+COPY bin/script-*.sh /usr/local/bin
 
 COPY --from=0 /usr/bin/composer /usr/bin/composer
 
