@@ -77,7 +77,7 @@ APP_SESSIONS_DIR=var/sessions
 This configuration has a specific php configuration and a vhost file. Plus, you can keep `/app/*` folders in the
 container to avoid some performances issues on Windows for exemple. If you want to use use this environement vars :
 ```cmd
-PROJECT_TYPE=symfony-flex
+PROJECT_TYPE=symfony-2
 APP_CACHE_DIR=app/cache
 APP_LOGS_DIR=app/logs
 APP_SESSIONS_DIR=app/sessions  
