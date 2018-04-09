@@ -60,17 +60,12 @@ docker-compose up -d
 ## `"symfony-flex"`
 
 This configuration has a specific php configuration and a vhost file. Plus, you can keep `/var/*` folders in the
-container to avoid some performances issues on Windows for exemple. If you want to use it go to the
-`docker-compose.yaml` file and add or uncomment thoses lines :
-```yaml
-  app:
-    volumes:
-      # BEGIN symfony-flex
-      - ${APP_ROOT}/var/
-      - ${APP_ROOT}/var/cache/
-      - ${APP_ROOT}/var/logs/
-      - ${APP_ROOT}/var/sessions/
-      # END symfony-flex
+container to avoid some performances issues on Windows for exemple. If you want to use use this environement vars :
+```cmd
+PROJECT_TYPE=symfony-flex
+APP_CACHE_DIR=var/cache
+APP_LOGS_DIR=var/logs
+APP_SESSIONS_DIR=var/sessions  
 ```
 
 ## `"symfony-1"`
@@ -79,7 +74,14 @@ container to avoid some performances issues on Windows for exemple. If you want 
 
 ## `"symfony-2"`
 
-@TODO
+This configuration has a specific php configuration and a vhost file. Plus, you can keep `/app/*` folders in the
+container to avoid some performances issues on Windows for exemple. If you want to use use this environement vars :
+```cmd
+PROJECT_TYPE=symfony-flex
+APP_CACHE_DIR=app/cache
+APP_LOGS_DIR=app/logs
+APP_SESSIONS_DIR=app/sessions  
+```
 
 ## `"drupal"`
 

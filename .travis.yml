@@ -1,0 +1,26 @@
+services:
+  - docker
+
+env:
+  - DOCKER_COMPOSE_VERSION=1.20.1 PROJECT_TYPE=symfony-flex APP_CACHE_DIR=var/cache APP_LOGS_DIR=var/logs APP_SESSIONS_DIR=var/sessions
+  - DOCKER_COMPOSE_VERSION=1.20.1 PROJECT_TYPE=symfony-2 APP_CACHE_DIR=app/cache APP_LOGS_DIR=app/logs APP_SESSIONS_DIR=app/sessions
+
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+  - docker-compose --version
+  - cp .env.dist .env
+  - sed -i "s/PROJECT_TYPE=symfony-flex/PROJECT_TYPE=$PROJECT_TYPE/" .env
+  - sed -i "s/APP_CACHE_DIR=var\/cache/APP_CACHE_DIR=$APP_CACHE_DIR/" .env
+  - sed -i "s/APP_LOGS_DIR=var\/logs/APP_LOGS_DIR=$APP_LOGS_DIR/" .env
+  - sed -i "s/APP_SESSIONS_DIR=var\/sessions/APP_SESSIONS_DIR=$APP_SESSIONS_DIR/" .env
+  - docker-compose build
+  - docker-compose start
+  - docker ps
+
+script:
+  - travis_retry docker build -t test_image .
+  - docker run -d -p 127.0.0.1:80:80 --name test_container test_image
+  - docker ps | grep -q test_container
