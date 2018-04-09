@@ -6,6 +6,7 @@ env:
   - DOCKER_COMPOSE_VERSION=1.20.1 PROJECT_TYPE=symfony-2 APP_CACHE_DIR=app\\/cache APP_LOGS_DIR=app\\/logs APP_SESSIONS_DIR=app\\/sessions
 
 before_install:
+  - sudo service mysql stop
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
