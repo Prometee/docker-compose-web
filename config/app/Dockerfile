@@ -11,12 +11,10 @@ RUN apk add --update --no-cache --virtual .persistent-deps \
 		icu-libs \
 		zlib
 #$PHP_VERSION come from the env var of the parent image
-RUN set -xe \
-    APCU_PACKAGE=apcu; \
-    XDEBUG_PACKAGE=xdebug; \
-    if [ ${PHP_VERSION:0:3} == 5.6 ]; then \
-        APCU_PACKAGE=apcu-4.0.11; \
-        XDEBUG_PACKAGE=xdebug-2.5.5; \
+RUN set -xe; \
+    if [ "${PHP_VERSION:0:3}" == "5.6" ]; then \
+        _apcu_package=apcu-4.0.11; \
+        _xdebug_package=xdebug-2.5.5; \
     fi; \
 	apk add --update --no-cache --virtual .build-deps \
 		$PHPIZE_DEPS \
@@ -26,7 +24,7 @@ RUN set -xe \
         libjpeg-turbo-dev \
         libpng-dev \
     && docker-php-ext-configure \
-        gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+        gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/ \
 	&& docker-php-ext-install \
 		-j"$(getconf _NPROCESSORS_ONLN)" gd \
 	&& docker-php-ext-install \
@@ -34,8 +32,8 @@ RUN set -xe \
 		zip \
 		pdo_mysql \
 	&& pecl install \
-		${APCU_PACKAGE} \
-		${XDEBUG_PACKAGE} \
+		${_apcu_package:-apcu} \
+		${_xdebug_package:-xdebug} \
 	&& docker-php-ext-enable apcu \
 	&& docker-php-ext-enable xdebug \
 	&& apk del .build-deps
