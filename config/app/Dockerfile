@@ -36,7 +36,7 @@ ENV PHP_INI_SCAN_DIR "/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.custom.d
 COPY php/conf.d/*.ini /usr/local/etc/php/conf.d/
 RUN mkdir /usr/local/etc/php/conf.project_type.d/
 COPY php/project_type/*.ini /usr/local/etc/php/conf.project_type.d/
-COPY bin/script-*.sh /usr/local/bin
+COPY bin/script-*.sh /usr/local/bin/
 
 COPY --from=0 /usr/bin/composer /usr/bin/composer
 
