@@ -1,6 +1,6 @@
 ARG PHP_VERSION=7.1
 #https://pecl.php.net/package/APCu
-ARG APCU_VERSION=5.1.11
+ARG APCU_VERSION=5.1.8
 ARG APP_ROOT=/var/www/html
 
 FROM composer:latest
