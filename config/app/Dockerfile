@@ -37,6 +37,10 @@ RUN set -xe; \
 	&& docker-php-ext-enable apcu \
 	&& docker-php-ext-enable xdebug \
 	&& apk del .build-deps
+	&& apk add --update --no-cache \
+	    freetype \
+	    libpng \
+	    libjpeg-turbo
 
 #Allow custom config available from volume mounting
 #volumes:
