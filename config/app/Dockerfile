@@ -36,7 +36,7 @@ RUN set -xe; \
 		${_xdebug_package:-xdebug} \
 	&& docker-php-ext-enable apcu \
 	&& docker-php-ext-enable xdebug \
-	&& apk del .build-deps
+	&& apk del .build-deps \
 	&& apk add --update --no-cache \
 	    freetype \
 	    libpng \
