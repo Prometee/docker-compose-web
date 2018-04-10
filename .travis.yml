@@ -3,8 +3,7 @@ services:
 
 env:
   - DOCKER_COMPOSE_VERSION=1.20.1 PROJECT_TYPE=symfony-flex APP_CACHE_DIR=var\\/cache APP_LOGS_DIR=var\\/logs APP_SESSIONS_DIR=var\\/sessions
-  - DOCKER_COMPOSE_VERSION=1.20.1 PROJECT_TYPE=symfony-2 APP_CACHE_DIR=app\\/cache APP_LOGS_DIR=app\\/logs APP_SESSIONS_DIR=app\\/sessions
-  - DOCKER_COMPOSE_VERSION=1.20.1 PROJECT_TYPE=symfony-2 APP_CACHE_DIR=app\\/cache APP_LOGS_DIR=app\\/logs APP_SESSIONS_DIR=app\\/sessions APP_PHP_VERSION=5.6 APP_APCU_VERSION=4.0.11
+  - DOCKER_COMPOSE_VERSION=1.20.1 PROJECT_TYPE=symfony-2 APP_CACHE_DIR=app\\/cache APP_LOGS_DIR=app\\/logs APP_SESSIONS_DIR=app\\/sessions APP_PHP_VERSION=5.6
 
 before_install:
   - sudo service mysql stop

@@ -12,7 +12,6 @@ RUN chmod 0600 /etc/ssl/certs/server-localhost.crt
 
 COPY conf.d/*.conf.tpl /etc/nginx/conf.d/
 COPY docker-nginx-entrypoint /usr/local/bin/docker-nginx-entrypoint
-RUN chmod +x /usr/local/bin/docker-nginx-entrypoint
 
 WORKDIR ${NGINX_ROOT}
 ENTRYPOINT ["docker-nginx-entrypoint"]

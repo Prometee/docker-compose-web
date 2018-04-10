@@ -1,30 +1,34 @@
 ARG PHP_VERSION=7.1
-#https://pecl.php.net/package/APCu
-ARG APCU_VERSION=5.1.8
-ARG APP_ROOT=/var/www/html
 
 FROM composer:latest
 FROM php:${PHP_VERSION}-fpm-alpine
 
+ARG APP_ROOT=/var/www/html
 ENV APP_ROOT ${APP_ROOT}
-ENV APCU_VERSION ${APCU_VERSION}
 
-RUN apk add --no-cache --virtual .persistent-deps \
+RUN apk add --update --no-cache --virtual .persistent-deps \
 		git \
 		icu-libs \
 		zlib
 
 RUN set -xe \
-	&& apk add --no-cache --virtual .build-deps \
+	&& apk add --update --no-cache --virtual .build-deps \
 		$PHPIZE_DEPS \
 		icu-dev \
 		zlib-dev \
+		freetype-dev \
+        libjpeg-turbo-dev \
+        libpng-dev \
+    && docker-php-ext-configure \
+        gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+	&& docker-php-ext-install \
+		-j"$(getconf _NPROCESSORS_ONLN)" gd \
 	&& docker-php-ext-install \
 		intl \
 		zip \
 		pdo_mysql \
 	&& pecl install \
-		apcu-${APCU_VERSION} \
+		apcu \
 		xdebug \
 	&& docker-php-ext-enable apcu \
 	&& docker-php-ext-enable xdebug \
@@ -39,7 +43,6 @@ COPY php/conf.d/*.ini /usr/local/etc/php/conf.d/
 RUN mkdir /usr/local/etc/php/conf.project_type.d/
 COPY php/project_type/*.ini /usr/local/etc/php/conf.project_type.d/
 COPY bin/script-*.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/script-*.sh
 
 COPY --from=0 /usr/bin/composer /usr/bin/composer
 
