@@ -1,4 +1,6 @@
-Docker Compose for WEB development
+[![Build Status](https://travis-ci.org/Prometee/docker-compose-web.svg?branch=master)](https://travis-ci.org/Prometee/docker-compose-web)
+
+Docker Compose for WEB development 
 ==================================
 
 This docker-compose use php-fpm, nginx (HTTP+HTTPS/2), MySQL and Mailhog.
