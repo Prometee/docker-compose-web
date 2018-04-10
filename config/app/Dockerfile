@@ -10,16 +10,15 @@ RUN apk add --update --no-cache --virtual .persistent-deps \
 		git \
 		icu-libs \
 		zlib
-
+#$PHP_VERSION come from the env var of the parent image
 RUN set -xe \
-    APCU_PACKAGE=apcu \
-    XDEBUG_PACKAGE=xdebug \
-    if [ $PHP_VERSION == 5.6* ] \
-    then \
-        APCU_PACKAGE=apcu-4.0.11 \
-        XDEBUG_PACKAGE=xdebug-2.5.5 \
-    fi \
-	&& apk add --update --no-cache --virtual .build-deps \
+    APCU_PACKAGE=apcu; \
+    XDEBUG_PACKAGE=xdebug; \
+    if [ ${PHP_VERSION:0:3} == 5.6 ]; then \
+        APCU_PACKAGE=apcu-4.0.11; \
+        XDEBUG_PACKAGE=xdebug-2.5.5; \
+    fi; \
+	apk add --update --no-cache --virtual .build-deps \
 		$PHPIZE_DEPS \
 		icu-dev \
 		zlib-dev \
