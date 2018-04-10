@@ -6,6 +6,7 @@ services:
       context: ${DOCKER_APP_CONFIG_DIR}
       args:
         PHP_VERSION: ${APP_PHP_VERSION}
+        APCU_VERSION: ${APP_APCU_VERSION}
         APP_ROOT: ${APP_ROOT}
     environment:
         APP_PROJECT_TYPE: ${PROJECT_TYPE}

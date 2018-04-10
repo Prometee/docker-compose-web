@@ -1,17 +1,19 @@
 ARG PHP_VERSION=7.1
+#https://pecl.php.net/package/APCu
+ARG APCU_VERSION=5.1.11
+ARG APP_ROOT=/var/www/html
 
 FROM composer:latest
 FROM php:${PHP_VERSION}-fpm-alpine
 
-ARG APP_ROOT=/var/www/html
 ENV APP_ROOT ${APP_ROOT}
+ENV APCU_VERSION ${APCU_VERSION}
 
 RUN apk add --no-cache --virtual .persistent-deps \
 		git \
 		icu-libs \
 		zlib
 
-ENV APCU_VERSION 5.1.8
 RUN set -xe \
 	&& apk add --no-cache --virtual .build-deps \
 		$PHPIZE_DEPS \
