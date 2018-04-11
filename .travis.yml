@@ -21,4 +21,9 @@ before_install:
 script:
   - docker-compose build
   - docker-compose up -d
-  - docker ps
+  - docker-compose exec app php -v
+  - docker-compose -f ./docker-compose.capistrano.yaml build
+  - docker-compose -f ./docker-compose.capistrano.yaml up -d
+  - docker-compose -f ./docker-compose.capistrano.yaml exec capistrano cap -V
+  - docker-compose -f ./docker-compose.capistrano.yaml run capistrano cap -V
+  - docker ps -a
