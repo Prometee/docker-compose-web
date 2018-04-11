@@ -17,6 +17,7 @@ before_install:
   - sed -i "s/APP_CACHE_DIR=var\/cache/APP_CACHE_DIR=$APP_CACHE_DIR/" .env
   - sed -i "s/APP_LOGS_DIR=var\/logs/APP_LOGS_DIR=$APP_LOGS_DIR/" .env
   - sed -i "s/APP_SESSIONS_DIR=var\/sessions/APP_SESSIONS_DIR=$APP_SESSIONS_DIR/" .env
+  - echo -ne "source "https://rubygems.org"\ngem 'capistrano'\ngem 'capistrano-composer'\n" > Gemfile
 
 script:
   - docker-compose build
