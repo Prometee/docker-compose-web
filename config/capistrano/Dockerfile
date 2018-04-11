@@ -5,6 +5,9 @@ ENV CAPISTRANO_ROOT ${CAPISTRANO_ROOT}
 
 COPY docker-capistrano-entrypoint /usr/local/bin/docker-capistrano-entrypoint
 
+RUN gem install capistrano \
+    && gem install capistrano-composer
+
 WORKDIR ${CAPISTRANO_ROOT}
 
 ENTRYPOINT ["docker-capistrano-entrypoint"]
