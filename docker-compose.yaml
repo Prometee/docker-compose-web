@@ -56,7 +56,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
      - /var/lib/mysql
-     - ${MYSQL_DUMP_DIR}:/docker-entrypoint-initdb.d/dump.sql:ro
+     - ${MYSQL_DUMP_DIR}:/docker-entrypoint-initdb.d:ro
     ports:
      - "${MYSQL_PORT}:3306"
    
