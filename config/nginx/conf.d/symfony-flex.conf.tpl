@@ -21,7 +21,7 @@ server {
         #set ${DOLLAR}upstream_host app;
         #fastcgi_pass ${DOLLAR}upstream_host:9000;
         # Uncomment the previous lines and comment the next one to enable dynamic resolution (incompatible with Kubernetes)
-        fastcgi_pass app:9000;
+        fastcgi_pass ${NGINX_PHP_HOST}:${NGINX_PHP_PORT};
         fastcgi_split_path_info ^(.+\.php)(/.*)$;
         include fastcgi_params;
         # When you are using symlinks to link the document root to the
