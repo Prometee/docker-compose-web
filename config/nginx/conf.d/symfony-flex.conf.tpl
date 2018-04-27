@@ -16,7 +16,7 @@ server {
         # try to serve file directly, fallback to index.php
         try_files ${DOLLAR}uri /${NGINX_WEB_INDEX_FILE}${DOLLAR}is_args${DOLLAR}args;
     }
-    location ~ ^/${NGINX_WEB_INDEX_FILE_DOT_ESCAPED}(/|$) {
+    location ~ ^(.+\.php)(/|$) {
         #resolver 127.0.0.11;
         #set ${DOLLAR}upstream_host app;
         #fastcgi_pass ${DOLLAR}upstream_host:9000;
@@ -36,6 +36,6 @@ server {
         # Prevents URIs that include the front controller. This will 404:
         # http://domain.tld/index.php/some-path
         # Remove the internal directive to allow URIs like this
-        internal;
+        #internal;
     }
 }
