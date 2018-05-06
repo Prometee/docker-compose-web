@@ -17,7 +17,7 @@ server {
         try_files ${DOLLAR}uri /${NGINX_WEB_INDEX_FILE}${DOLLAR}is_args${DOLLAR}args;
     }
 
-    location ~ ^/${NGINX_WEB_INDEX_FILE_DOT_ESCAPED}(/|$) {
+    location ~ ^(.+\.php)(/|$) {
         fastcgi_pass ${NGINX_PHP_HOST}:${NGINX_PHP_PORT};
         fastcgi_split_path_info ^(.+\.php)(/.*)$;
         include fastcgi_params;

@@ -19,7 +19,7 @@ server {
 
     index index.php;
 
-    location ~ \.php$ {
+    location ~ ^(.+\.php)(/|$) {
         try_files ${DOLLAR}uri =404;
         fastcgi_pass ${NGINX_PHP_HOST}:${NGINX_PHP_PORT};
         fastcgi_split_path_info ^(.+\.php)(/.*)$;
