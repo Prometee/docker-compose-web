@@ -5,6 +5,6 @@ export NGINX_PHP_HOST="app"
 export NGINX_PHP_PORT="9000"
 export NGINX_WEB_INDEX_FILE_DOT_ESCAPED=${NGINX_WEB_INDEX_FILE//./\\.}
 export DOLLAR="$"
-envsubst < /etc/nginx/conf.d/${NGINX_PROJECT_TYPE}.conf.tpl > /etc/nginx/conf.d/default.conf
+envsubst < /etc/nginx/tpl/${NGINX_PROJECT_TYPE}.conf.tpl > /etc/nginx/conf.d/default.conf
 
 exec "$@"

@@ -10,7 +10,7 @@ ADD ssl/certs/server.crt /etc/ssl/certs/server-localhost.crt
 ADD ssl/private/server.key /etc/ssl/private/server-localhost.key
 RUN chmod 0600 /etc/ssl/certs/server-localhost.crt
 
-COPY conf.d/*.conf.tpl /etc/nginx/conf.d/
+COPY tpl /etc/nginx/tpl
 COPY docker-nginx-entrypoint /usr/local/bin/docker-nginx-entrypoint
 
 WORKDIR ${NGINX_ROOT}

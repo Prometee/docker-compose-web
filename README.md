@@ -77,12 +77,13 @@ APP_SESSIONS_DIR=var/sessions
 ## `"symfony-2"`
 
 This configuration has a specific php configuration and a vhost file. Plus, you can keep `/app/*` folders in the
-container to avoid some performances issues on Windows for exemple. If you want to use use this environement vars :
+container to avoid some performances issues on Windows for example. If you want to use use this environment vars :
 ```cmd
 PROJECT_TYPE=symfony-2
 APP_CACHE_DIR=app/cache
 APP_LOGS_DIR=app/logs
-APP_SESSIONS_DIR=app/sessions  
+APP_SESSIONS_DIR=app/sessions
+NGINX_WEB_INDEX_FILE=app_dev.php
 ```
 
 ## `"drupal"`
@@ -91,7 +92,13 @@ APP_SESSIONS_DIR=app/sessions
 
 ## `"wordpress"`
 
-@TODO
+This configuration has a specific php configuration and a vhost file. If you want to use use this environment vars :
+```cmd
+PROJECT_TYPE=wordpress
+APP_CACHE_DIR=
+APP_LOGS_DIR=
+APP_SESSIONS_DIR=  
+```
 
 # Addons
 
