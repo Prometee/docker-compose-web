@@ -97,7 +97,8 @@ This configuration has a specific php configuration and a vhost file. If you wan
 PROJECT_TYPE=wordpress
 APP_CACHE_DIR=
 APP_LOGS_DIR=
-APP_SESSIONS_DIR=  
+APP_SESSIONS_DIR=
+NGINX_WEB_FOLDER=
 ```
 
 # Addons
