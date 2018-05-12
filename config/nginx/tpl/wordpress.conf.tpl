@@ -14,10 +14,8 @@ server {
     ssl_prefer_server_ciphers on;
 
     location / {
-        try_files ${DOLLAR}uri /${NGINX_WEB_INDEX_FILE}${DOLLAR}is_args${DOLLAR}args;
+        try_files ${DOLLAR}uri ${DOLLAR}uri/ /${NGINX_WEB_INDEX_FILE}${DOLLAR}is_args${DOLLAR}args;
     }
-
-    index index.php;
 
     location ~ ^(.+\.php)(/|$) {
         try_files ${DOLLAR}uri =404;
