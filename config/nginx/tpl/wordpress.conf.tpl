@@ -12,6 +12,8 @@ server {
     ssl_protocols  TLSv1 TLSv1.1 TLSv1.2;
     ssl_ciphers HIGH:!aNULL:!eNULL:!EXPORT:!CAMELLIA:!DES:!MD5:!PSK:!RC4;
     ssl_prefer_server_ciphers on;
+    
+    index ${NGINX_WEB_INDEX_FILE};
 
     location / {
         try_files ${DOLLAR}uri ${DOLLAR}uri/ /${NGINX_WEB_INDEX_FILE}${DOLLAR}is_args${DOLLAR}args;
@@ -21,7 +23,7 @@ server {
         try_files ${DOLLAR}uri =404;
         fastcgi_pass ${NGINX_PHP_HOST}:${NGINX_PHP_PORT};
         fastcgi_split_path_info ^(.+\.php)(/.*)$;
-        fastcgi_index index.php;
+        fastcgi_index ${NGINX_WEB_INDEX_FILE};
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME ${DOLLAR}realpath_root${DOLLAR}fastcgi_script_name;
         fastcgi_param DOCUMENT_ROOT ${DOLLAR}realpath_root;
