@@ -27,8 +27,6 @@ services:
       - docker-php-entrypoint
     command:
       - php-fpm
-    ports:
-      - "${PHP_PORT}:9000"
 
   nginx:
     build:
