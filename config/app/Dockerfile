@@ -6,6 +6,9 @@ FROM php:${PHP_VERSION}-fpm-alpine
 ARG APP_ROOT=/var/www/html
 ENV APP_ROOT ${APP_ROOT}
 
+ARG APP_PHP_EXTRA_EXTENSIONS=""
+ENV APP_PHP_EXTRA_EXTENSIONS ${APP_PHP_EXTRA_EXTENSIONS}
+
 RUN apk add --update --no-cache --virtual .persistent-deps \
 		git \
 		icu-libs \
@@ -31,6 +34,9 @@ RUN set -xe; \
 		intl \
 		zip \
 		pdo_mysql \
+	&& for ext in ${APP_PHP_EXTRA_EXTENSIONS}; do \
+	    docker-php-ext-install $ext; \
+	    done \
 	&& pecl install \
 		${_apcu_package:-apcu} \
 		${_xdebug_package:-xdebug} \

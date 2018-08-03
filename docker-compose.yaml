@@ -7,6 +7,7 @@ services:
       args:
         PHP_VERSION: ${APP_PHP_VERSION}
         APP_ROOT: ${APP_ROOT}
+        APP_PHP_EXTRA_EXTENSIONS: ${APP_PHP_EXTRA_EXTENSIONS}
     environment:
         APP_PROJECT_TYPE: ${PROJECT_TYPE}
         APP_CACHE_DIR: ${APP_CACHE_DIR}
