@@ -3,7 +3,7 @@ version: '3.6'
 services:
   capistrano:
     build:
-      context: ${DOCKER_CAPISTRANO_CONFIG_DIR}
+      context: ${DOCKER_CAPISTRANO_CONFIG_DIR:-./config/capistrano}
       args:
         CAPISTRANO_ROOT: ${APP_ROOT}
     volumes:

@@ -13,7 +13,7 @@ RUN apk add --update --no-cache --virtual .persistent-deps \
 		git \
 		icu-libs \
 		zlib
-#$PHP_VERSION come from the env var of the parent image
+#$PHP_VERSION come from the env var of the parent image, this is not the ARG env
 RUN set -xe; \
     if [ "${PHP_VERSION:0:3}" == "5.6" ]; then \
         _apcu_package=apcu-4.0.11; \
@@ -56,8 +56,10 @@ ENV PHP_INI_SCAN_DIR "/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.custom.d
 COPY php/conf.d/*.ini /usr/local/etc/php/conf.d/
 RUN mkdir /usr/local/etc/php/conf.project_type.d/
 COPY php/project_type/*.ini /usr/local/etc/php/conf.project_type.d/
-COPY bin/script-*.sh /usr/local/bin/
+COPY bin/app-entrypoint*.sh /usr/local/bin/
 
 COPY --from=0 /usr/bin/composer /usr/bin/composer
 
 WORKDIR ${APP_ROOT}
+
+USER www-data:www-data
