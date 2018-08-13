@@ -57,5 +57,5 @@ services:
   mailhog:
     image: mailhog/mailhog
     ports:
-       - "${MAILHOG_PORT1}:1025"
-       - "${MAILHOG_PORT2}:8025"
+       - "${MAILHOG_PORT1}:8025"
+       - "${MAILHOG_PORT2}:1025"
