@@ -16,7 +16,6 @@ before_install:
   - docker-compose --version
   - cp .env.dist .env
   - sed -i "s/PROJECT_TYPE=symfony-flex/PROJECT_TYPE=$PROJECT_TYPE/" .env
-  #- echo -ne "source \"https://rubygems.org\"\ngem \"capistrano\"\ngem \"capistrano-composer\"\n" > Gemfile
 
 script:
   - docker-compose up -d --build
@@ -25,4 +24,5 @@ script:
   - docker-compose -f ./docker-compose.capistrano.yaml up -d
   - docker-compose -f ./docker-compose.capistrano.yaml exec capistrano cap -V
   - docker-compose -f ./docker-compose.capistrano.yaml run capistrano cap -V
+  - docker-compose logs
   - docker ps -a
