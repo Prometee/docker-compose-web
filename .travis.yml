@@ -2,10 +2,10 @@ services:
   - docker
 
 env:
-  - DOCKER_COMPOSE_VERSION=1.20.1 PROJECT_TYPE=symfony-flex APP_CACHE_DIR=var\\/cache APP_LOGS_DIR=var\\/logs APP_SESSIONS_DIR=var\\/sessions
-  - DOCKER_COMPOSE_VERSION=1.20.1 PROJECT_TYPE=symfony-flex APP_CACHE_DIR=var\\/cache APP_LOGS_DIR=var\\/logs APP_SESSIONS_DIR=var\\/sessions APP_PHP_VERSION=7.2
-  - DOCKER_COMPOSE_VERSION=1.20.1 PROJECT_TYPE=symfony-2 APP_CACHE_DIR=app\\/cache APP_LOGS_DIR=app\\/logs APP_SESSIONS_DIR=app\\/sessions NGINX_WEB_INDEX_FILE=app_dev.php APP_PHP_VERSION=5.6
-  - DOCKER_COMPOSE_VERSION=1.20.1 PROJECT_TYPE=wordpress APP_CACHE_DIR= APP_LOGS_DIR= APP_SESSIONS_DIR= APP_PHP_VERSION=5.6
+  - DOCKER_COMPOSE_VERSION=1.20.1 PROJECT_TYPE=symfony-flex
+  - DOCKER_COMPOSE_VERSION=1.20.1 PROJECT_TYPE=symfony-flex APP_PHP_VERSION=7.2
+  - DOCKER_COMPOSE_VERSION=1.20.1 PROJECT_TYPE=symfony-2    APP_PHP_VERSION=5.6 NGINX_WEB_INDEX_FILE=app_dev.php
+  - DOCKER_COMPOSE_VERSION=1.20.1 PROJECT_TYPE=wordpress    APP_PHP_VERSION=5.6
 
 before_install:
   - sudo service mysql stop
@@ -16,9 +16,6 @@ before_install:
   - docker-compose --version
   - cp .env.dist .env
   - sed -i "s/PROJECT_TYPE=symfony-flex/PROJECT_TYPE=$PROJECT_TYPE/" .env
-  - sed -i "s/APP_CACHE_DIR=var\/cache/APP_CACHE_DIR=$APP_CACHE_DIR/" .env
-  - sed -i "s/APP_LOGS_DIR=var\/logs/APP_LOGS_DIR=$APP_LOGS_DIR/" .env
-  - sed -i "s/APP_SESSIONS_DIR=var\/sessions/APP_SESSIONS_DIR=$APP_SESSIONS_DIR/" .env
   #- echo -ne "source \"https://rubygems.org\"\ngem \"capistrano\"\ngem \"capistrano-composer\"\n" > Gemfile
 
 script:

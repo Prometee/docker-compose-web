@@ -65,9 +65,10 @@ This configuration has a specific php configuration and a vhost file. Plus, you 
 container to avoid some performances issues on Windows for exemple. If you want to use use this environement vars :
 ```cmd
 PROJECT_TYPE=symfony-flex
-APP_CACHE_DIR=var/cache
-APP_LOGS_DIR=var/logs
-APP_SESSIONS_DIR=var/sessions  
+# If you want to add other php extensions, uncomment the line bellow
+# multiple extensions should be seperated by a space
+# APP_PHP_EXTRA_EXTENSIONS=exif
+
 ```
 
 ## `"symfony-1"`
@@ -80,10 +81,10 @@ This configuration has a specific php configuration and a vhost file. Plus, you 
 container to avoid some performances issues on Windows for example. If you want to use use this environment vars :
 ```cmd
 PROJECT_TYPE=symfony-2
-APP_CACHE_DIR=app/cache
-APP_LOGS_DIR=app/logs
-APP_SESSIONS_DIR=app/sessions
 NGINX_WEB_INDEX_FILE=app_dev.php
+# If you want to add other php extensions, uncomment the line bellow
+# multiple extensions should be seperated by a space
+# APP_PHP_EXTRA_EXTENSIONS=exif
 ```
 
 ## `"drupal"`
@@ -95,10 +96,10 @@ NGINX_WEB_INDEX_FILE=app_dev.php
 This configuration has a specific php configuration and a vhost file. If you want to use use this environment vars :
 ```cmd
 PROJECT_TYPE=wordpress
-APP_CACHE_DIR=
-APP_LOGS_DIR=
-APP_SESSIONS_DIR=
 NGINX_WEB_FOLDER=
+# If you want to add other php extensions, uncomment the line bellow
+# multiple extensions should be seperated by a space
+# APP_PHP_EXTRA_EXTENSIONS=exif
 ```
 
 # Addons
