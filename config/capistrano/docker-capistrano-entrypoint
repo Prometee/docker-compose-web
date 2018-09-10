@@ -2,7 +2,13 @@
 
 set -e
 
-if [[ -f "./Gemfile" && ! -x "/usr/local/bundle/bin/cap" ]]
+if [ ! -x "/usr/local/bundle/bin/cap" ]
+then
+	echo "First install of capistrano ..."
+    gem install capistrano
+fi
+
+if [[ -f "./Gemfile" &&  ]]
 then
 	echo "Gemfile detected, installing needed gem ..."
     bundle install
