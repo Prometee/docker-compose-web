@@ -2,10 +2,10 @@ services:
   - docker
 
 env:
-  - DOCKER_COMPOSE_VERSION=1.20.1 PROJECT_TYPE=symfony-flex
-  - DOCKER_COMPOSE_VERSION=1.20.1 PROJECT_TYPE=symfony-flex APP_PHP_VERSION=7.2
-  - DOCKER_COMPOSE_VERSION=1.20.1 PROJECT_TYPE=symfony-2    APP_PHP_VERSION=5.6 NGINX_WEB_INDEX_FILE=app_dev.php
-  - DOCKER_COMPOSE_VERSION=1.20.1 PROJECT_TYPE=wordpress    APP_PHP_VERSION=5.6
+  - DOCKER_COMPOSE_VERSION=1.22.0 PROJECT_TYPE=symfony-flex
+  - DOCKER_COMPOSE_VERSION=1.22.0 PROJECT_TYPE=symfony-flex APP_PHP_VERSION=7.2
+  - DOCKER_COMPOSE_VERSION=1.22.0 PROJECT_TYPE=symfony-2    APP_PHP_VERSION=5.6 NGINX_WEB_INDEX_FILE=app_dev.php
+  - DOCKER_COMPOSE_VERSION=1.22.0 PROJECT_TYPE=wordpress    APP_PHP_VERSION=5.6
 
 before_install:
   - sudo service mysql stop
@@ -24,8 +24,10 @@ before_install:
 script:
   - docker-compose up -d
   - docker-compose exec app php -v
+  - docker-compose logs
+  - docker-compose ps
   - docker-compose -f ./docker-compose.capistrano.yaml up -d
   - docker-compose -f ./docker-compose.capistrano.yaml exec capistrano cap -V
   - docker-compose -f ./docker-compose.capistrano.yaml run capistrano cap -V
-  - docker-compose logs
-  - docker ps -a
+  - docker-compose -f ./docker-compose.capistrano.yaml logs
+  - docker-compose -f ./docker-compose.capistrano.yaml ps
