@@ -15,7 +15,9 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
   - docker-compose --version
   - cp .env.dist .env
-  - sed -i "s/PROJECT_TYPE=symfony-flex/PROJECT_TYPE=$PROJECT_TYPE/" .env
+  - sed -i "s/PROJECT_TYPE=/PROJECT_TYPE=$PROJECT_TYPE/g" .env
+  - sed -i "s/APP_PHP_VERSION=/APP_PHP_VERSION=$APP_PHP_VERSION/g" .env
+  - sed -i "s/NGINX_WEB_INDEX_FILE=/NGINX_WEB_INDEX_FILE=$NGINX_WEB_INDEX_FILE/g" .env
 
 script:
   - docker-compose up -d --build
