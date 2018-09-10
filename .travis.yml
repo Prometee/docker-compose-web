@@ -15,12 +15,13 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
   - docker-compose --version
   - cp .env.dist .env
-  - sed -i "s/PROJECT_TYPE=/PROJECT_TYPE=$PROJECT_TYPE/g" .env
-  - sed -i "s/APP_PHP_VERSION=/APP_PHP_VERSION=$APP_PHP_VERSION/g" .env
-  - sed -i "s/NGINX_WEB_INDEX_FILE=/NGINX_WEB_INDEX_FILE=$NGINX_WEB_INDEX_FILE/g" .env
+  - sed -i "s/PROJECT_TYPE=.*/PROJECT_TYPE=$PROJECT_TYPE/g" .env
+  - sed -i "s/APP_PHP_VERSION=.*/APP_PHP_VERSION=$APP_PHP_VERSION/g" .env
+  - sed -i "s/NGINX_WEB_INDEX_FILE=.*/NGINX_WEB_INDEX_FILE=$NGINX_WEB_INDEX_FILE/g" .env
+  - docker-compose build
 
 script:
-  - docker-compose up -d --build
+  - docker-compose up -d
   - docker-compose exec app php -v
   - docker-compose -f ./docker-compose.capistrano.yaml build
   - docker-compose -f ./docker-compose.capistrano.yaml up -d

@@ -61,5 +61,3 @@ COPY bin/app-entrypoint*.sh /usr/local/bin/
 COPY --from=0 /usr/bin/composer /usr/bin/composer
 
 WORKDIR ${APP_ROOT}
-
-USER www-data:www-data
