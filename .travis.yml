@@ -15,15 +15,15 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
   - docker-compose --version
   - cp .env.dist .env
-  - sed -i "s/PROJECT_TYPE=.*/PROJECT_TYPE=$PROJECT_TYPE/g" .env
-  - sed -i "s/APP_PHP_VERSION=.*/APP_PHP_VERSION=$APP_PHP_VERSION/g" .env
-  - sed -i "s/NGINX_WEB_INDEX_FILE=.*/NGINX_WEB_INDEX_FILE=$NGINX_WEB_INDEX_FILE/g" .env
+  - if [ ! -z ${PROJECT_TYPE+x} ]; then sed -i "s/PROJECT_TYPE=.*/PROJECT_TYPE=$PROJECT_TYPE/g" .env; fi
+  - if [ ! -z ${APP_PHP_VERSION+x} ]; then sed -i "s/APP_PHP_VERSION=.*/APP_PHP_VERSION=$APP_PHP_VERSION/g" .env; fi
+  - if [ ! -z ${NGINX_WEB_INDEX_FILE+x} ]; then sed -i "s/NGINX_WEB_INDEX_FILE=.*/NGINX_WEB_INDEX_FILE=$NGINX_WEB_INDEX_FILE/g" .env; fi
+  - docker-compose build
+  - docker-compose -f ./docker-compose.capistrano.yaml build
 
 script:
-  - docker-compose build
   - docker-compose up -d
   - docker-compose exec app php -v
-  - docker-compose -f ./docker-compose.capistrano.yaml build
   - docker-compose -f ./docker-compose.capistrano.yaml up -d
   - docker-compose -f ./docker-compose.capistrano.yaml exec capistrano cap -V
   - docker-compose -f ./docker-compose.capistrano.yaml run capistrano cap -V
