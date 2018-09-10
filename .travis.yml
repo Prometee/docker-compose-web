@@ -18,9 +18,9 @@ before_install:
   - sed -i "s/PROJECT_TYPE=.*/PROJECT_TYPE=$PROJECT_TYPE/g" .env
   - sed -i "s/APP_PHP_VERSION=.*/APP_PHP_VERSION=$APP_PHP_VERSION/g" .env
   - sed -i "s/NGINX_WEB_INDEX_FILE=.*/NGINX_WEB_INDEX_FILE=$NGINX_WEB_INDEX_FILE/g" .env
-  - docker-compose build
 
 script:
+  - docker-compose build
   - docker-compose up -d
   - docker-compose exec app php -v
   - docker-compose -f ./docker-compose.capistrano.yaml build
