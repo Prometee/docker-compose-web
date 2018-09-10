@@ -19,8 +19,7 @@ before_install:
   #- echo -ne "source \"https://rubygems.org\"\ngem \"capistrano\"\ngem \"capistrano-composer\"\n" > Gemfile
 
 script:
-  - docker-compose build
-  - docker-compose up -d
+  - docker-compose up -d --build
   - docker-compose exec app php -v
   - docker-compose -f ./docker-compose.capistrano.yaml build
   - docker-compose -f ./docker-compose.capistrano.yaml up -d
