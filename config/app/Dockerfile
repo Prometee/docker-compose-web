@@ -21,6 +21,7 @@ RUN set -xe; \
     fi; \
 	apk add --update --no-cache --virtual .build-deps \
 		$PHPIZE_DEPS \
+		libxml2-dev \
 		icu-dev \
 		zlib-dev \
 		freetype-dev \
@@ -31,9 +32,11 @@ RUN set -xe; \
 	&& docker-php-ext-install \
 		-j"$(getconf _NPROCESSORS_ONLN)" gd \
 	&& docker-php-ext-install \
+	    soap \
 		intl \
 		zip \
 		pdo_mysql \
+		pcntl \
 	&& for ext in ${APP_PHP_EXTRA_EXTENSIONS}; do \
 	    docker-php-ext-install $ext; \
 	    done \
@@ -42,6 +45,7 @@ RUN set -xe; \
 		${_xdebug_package:-xdebug} \
 	&& docker-php-ext-enable apcu \
 	&& docker-php-ext-enable xdebug \
+	&& docker-php-ext-enable opcache \
 	&& apk del .build-deps \
 	&& apk add --update --no-cache \
 	    freetype \
@@ -59,5 +63,8 @@ COPY php/project_type/*.ini /usr/local/etc/php/conf.project_type.d/
 COPY bin/app-entrypoint*.sh /usr/local/bin/
 
 COPY --from=0 /usr/bin/composer /usr/bin/composer
+
+# Speedup composer
+RUN composer global require "hirak/prestissimo" "squizlabs/php_codesniffer=*"
 
 WORKDIR ${APP_ROOT}

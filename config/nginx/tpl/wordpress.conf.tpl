@@ -27,5 +27,6 @@ server {
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME ${DOLLAR}realpath_root${DOLLAR}fastcgi_script_name;
         fastcgi_param DOCUMENT_ROOT ${DOLLAR}realpath_root;
+        fastcgi_read_timeout 601; # php max_execution_time + 1 to display errors
     }
 }
