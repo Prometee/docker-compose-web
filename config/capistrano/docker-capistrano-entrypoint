@@ -2,7 +2,7 @@
 
 set -e
 
-if [[ -f "./Gemfile" &&  ]]
+if [[ -f "./Gemfile" ]]
 then
 	echo "Gemfile detected, installing needed gem ..."
     bundle install
