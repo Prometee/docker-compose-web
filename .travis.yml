@@ -32,7 +32,6 @@ script:
   - docker-compose -f ./docker-compose.capistrano.yaml logs
   - docker-compose -f ./docker-compose.capistrano.yaml ps
   - docker-compose -f ./docker-compose.yaml -f ./docker-compose.capistrano.yaml up -d
-  - docker-compose -f ./docker-compose.yaml -f ./docker-compose.capistrano.yaml exec capistrano cap -V
-  - docker-compose -f ./docker-compose.yaml -f ./docker-compose.capistrano.yaml run capistrano cap -V
+  - docker-compose -f ./docker-compose.yaml -f ./docker-compose.capistrano.yaml exec app php -v
   - docker-compose -f ./docker-compose.yaml -f ./docker-compose.capistrano.yaml logs
   - docker-compose -f ./docker-compose.yaml -f ./docker-compose.capistrano.yaml ps
