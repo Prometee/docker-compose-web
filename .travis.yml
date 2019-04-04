@@ -24,6 +24,8 @@ before_install:
 script:
   - docker-compose up -d
   - docker-compose exec app php -v
+  - docker-compose exec db mysql -V
+  - docker-compose exec nginx nginx -v
   - docker-compose logs
   - docker-compose ps
   - docker-compose -f ./docker-compose.capistrano.yaml up -d
@@ -33,5 +35,8 @@ script:
   - docker-compose -f ./docker-compose.capistrano.yaml ps
   - docker-compose -f ./docker-compose.yaml -f ./docker-compose.capistrano.yaml up -d
   - docker-compose -f ./docker-compose.yaml -f ./docker-compose.capistrano.yaml exec app php -v
+  - docker-compose -f ./docker-compose.yaml -f ./docker-compose.capistrano.yaml exec db mysql -V
+  - docker-compose -f ./docker-compose.yaml -f ./docker-compose.capistrano.yaml exec nginx nginx -v
+  - docker-compose -f ./docker-compose.yaml -f ./docker-compose.capistrano.yaml exec capistrano cap -V
   - docker-compose -f ./docker-compose.yaml -f ./docker-compose.capistrano.yaml logs
   - docker-compose -f ./docker-compose.yaml -f ./docker-compose.capistrano.yaml ps
