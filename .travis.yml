@@ -26,7 +26,7 @@ script:
   - docker-compose exec app php -v
   - docker-compose logs
   - docker-compose ps
-  - docker-compose  ./docker-compose.capistrano.yaml up -d
+  - docker-compose -f ./docker-compose.capistrano.yaml up -d
   - docker-compose -f ./docker-compose.capistrano.yaml exec capistrano cap -V
   - docker-compose -f ./docker-compose.capistrano.yaml run capistrano cap -V
   - docker-compose -f ./docker-compose.capistrano.yaml logs
