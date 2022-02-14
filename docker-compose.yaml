@@ -48,7 +48,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
-     - /var/lib/mysql
+     - mysql-data:/var/lib/mysql:rw
      - ${MYSQL_DUMP_DIR}:/docker-entrypoint-initdb.d:ro
     ports:
      - "${MYSQL_PORT}:3306"
@@ -58,3 +58,6 @@ services:
     ports:
        - "${MAILHOG_PORT1}:8025"
        - "${MAILHOG_PORT2}:1025"
+
+volumes:
+  mysql-data:
