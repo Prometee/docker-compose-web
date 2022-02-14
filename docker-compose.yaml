@@ -14,9 +14,6 @@ services:
         APP_PROJECT_TYPE: ${PROJECT_TYPE}
         COMPOSER_MEMORY_LIMIT: ${APP_PHP_COMPOSER_MEMORY_LIMIT:--1}
         COMPOSER_PROCESS_TIMEOUT: ${APP_PHP_COMPOSER_PROCESS_TIMEOUT:-600}
-    depends_on:
-      - db
-      - mailhog
     volumes:
       # PHP config files
       - ${DOCKER_APP_PHP_EXTRA_CONFIG_DIR:-./config/app/php/conf.custom.d}:/usr/local/etc/php/conf.custom.d/
