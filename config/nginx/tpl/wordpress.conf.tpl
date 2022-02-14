@@ -29,4 +29,8 @@ server {
         fastcgi_param DOCUMENT_ROOT ${DOLLAR}realpath_root;
         fastcgi_read_timeout 601; # php max_execution_time + 1 to display errors
     }
+
+    location ~ \.php$ {
+        return 404;
+    }
 }
