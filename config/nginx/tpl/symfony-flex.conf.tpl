@@ -18,7 +18,7 @@ server {
     }
 
     location ~ ^(.+\.php)(/|$) {
-        fastcgi_pass ${NGINX_PHP_HOST}:${NGINX_PHP_PORT};
+        fastcgi_pass ${NGINX_PHP_FASTCGI_PASS};
         fastcgi_split_path_info ^(.+\.php)(/.*)$;
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME ${DOLLAR}realpath_root${DOLLAR}fastcgi_script_name;

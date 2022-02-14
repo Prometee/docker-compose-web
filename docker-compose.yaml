@@ -33,8 +33,7 @@ services:
         NGINX_PROJECT_TYPE: ${PROJECT_TYPE}
         NGINX_WEB_FOLDER: ${NGINX_WEB_FOLDER}
         NGINX_WEB_INDEX_FILE: ${NGINX_WEB_INDEX_FILE}
-    depends_on:
-      - app
+        NGINX_PHP_FASTCGI_PASS: ${NGINX_PHP_FASTCGI_PASS:-app:9000}
     volumes:
       - ${PROJECT_DIR}:${APP_ROOT}:ro
     ports:
