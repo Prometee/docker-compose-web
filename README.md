@@ -102,6 +102,14 @@ NGINX_WEB_FOLDER=
 # APP_PHP_EXTRA_EXTENSIONS=exif
 ```
 
+# Certificate trusted on MACOSX
+
+```bash
+docker-compose -f ./.docker/docker-compose.yaml -f ./.docker/docker-compose.capistrano.yaml --env-file .env \
+  cp nginx:/etc/ssl/certs/server-localhost.crt .docker/config/nginx/ssl/certs/server.crt
+sudo security add-trusted-cert -d -r trustRoot ./.docker/config/nginx/ssl/certs/server.crt
+```
+
 # Addons
 
 ## Capistrano
