@@ -64,7 +64,4 @@ COPY bin/app-entrypoint*.sh /usr/local/bin/
 
 COPY --from=0 /usr/bin/composer /usr/bin/composer
 
-# Speedup composer
-RUN composer global require "hirak/prestissimo" "squizlabs/php_codesniffer=*"
-
 WORKDIR ${APP_ROOT}
