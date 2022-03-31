@@ -12,7 +12,8 @@ ENV APP_PHP_EXTRA_EXTENSIONS ${APP_PHP_EXTRA_EXTENSIONS}
 RUN apk add --update --no-cache --virtual .persistent-deps \
 		git \
 		icu-libs \
-		zlib
+		zlib \
+        imagemagick \
 #$PHP_VERSION come from the env var of the parent image, this is not the ARG env
 RUN set -xe; \
     if [ "${PHP_VERSION:0:3}" == "5.6" ]; then \
@@ -27,6 +28,7 @@ RUN set -xe; \
 		freetype-dev \
         libjpeg-turbo-dev \
         libpng-dev \
+        imagemagick-dev \
     && docker-php-ext-configure \
         gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/ \
 	&& docker-php-ext-install \
@@ -43,9 +45,11 @@ RUN set -xe; \
 	&& pecl install \
 		${_apcu_package:-apcu} \
 		${_xdebug_package:-xdebug} \
+    && (yes | pecl install imagick) \
 	&& docker-php-ext-enable apcu \
 	&& docker-php-ext-enable xdebug \
 	&& docker-php-ext-enable opcache \
+	&& docker-php-ext-enable imagick \
 	&& apk del .build-deps \
 	&& apk add --update --no-cache \
 	    freetype \
